@@ -15,8 +15,12 @@ GetHydrologyFromXLS(dataset_folder, hydr_folder);
 FindSamples(hydr_folder, samples_folder);
 
 
+i = 2;   % file index = 1..2
+
 file_list = dir(samples_folder + "\*.hydr");
 file_list = {file_list.name};
+file = file_list{i}; 
 
-file = file_list{2};
 MakeHydrologyFolder(samples_folder, file);
+
+
