@@ -45,6 +45,15 @@ end
 TL_matrix = [freqs TL];
 
 
+x = TL_matrix(:, 1); 
+y = TL_matrix(:, 2); 
 
+figure
 
-
+plot(x, y, 'LineWidth', 2); 
+set(gca, 'XScale', 'log');
+set(gca, 'YDir', 'reverse');
+xlabel('frequency, Hz');
+ylabel('TL, dB');
+title('TL(f)');
+grid on;
