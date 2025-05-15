@@ -1,6 +1,4 @@
-close all;
-clear variables;
-clc;
+function GetHydrologyFromXLS(dataset_folder, hydr_folder)
 
 struct_list = dir(dataset_folder);
 N = size(struct_list);
@@ -14,8 +12,6 @@ file_list(1:2) = [];
 N(1) = N(1) - 2;
 
 
-hydr_folder = 'hydrology';
-hydr_folder = 'hydrology_samples';
 if not(isfolder(hydr_folder))
     mkdir(hydr_folder)
 end
@@ -35,6 +31,4 @@ for i = 1:N
     writematrix(mat, [hydr_folder '\' basename '.hydr'], 'FileType', 'text', 'Delimiter', '\t')
 end
 
-
-
-
+end
