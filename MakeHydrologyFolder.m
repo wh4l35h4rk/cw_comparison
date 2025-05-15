@@ -1,12 +1,13 @@
-close all;
-clear variables;
-clc;
+function MakeHydrologyFolder(file_folder, hydro_file)
 
-hydro_file = "HYDROLOGY FILE";
 bath_file = "bath.txt";
 dir = 'hydrology/';
 
-hydro_M = readmatrix(hydro_file, FileType="text");
+if not(isfolder(dir))
+    mkdir(dir)
+end
+
+hydro_M = readmatrix(fullfile(file_folder, hydro_file), FileType="text");
 bath_M = readmatrix(bath_file);
 r = bath_M(:, 1);
 
@@ -16,4 +17,6 @@ for i = 1:size(r)
 
     new_name = [int2str(r(i)), '.hydr'];
     writematrix(hydro_cut, [dir, new_name], FileType="text", Delimiter='tab');
+end
+
 end
