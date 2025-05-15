@@ -20,8 +20,8 @@ for i = 1:N
         thermocline_files(i, 1) = file_list{i};
         thermocline_files(i, 2) = int2str(max(c) - min(c));
 
-        [~, row_end] = FindThermocline(file);
-        if row_end <= 20
+        [row_start, row_end] = FindThermocline(file);
+        if (row_end <= 20) && (row_start > 5)
             shelf_tc_files(i, 1) = file_list{i};
             shelf_tc_files(i, 2) = thermocline_files(i, 2);
         end
