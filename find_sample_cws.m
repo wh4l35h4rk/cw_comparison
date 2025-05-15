@@ -2,7 +2,7 @@ close all;
 clear variables;
 clc;
 
-foldername = "hydrology";
+foldername = "hydrology_samples";
 file_list = dir(foldername + "\*.hydr");
 file_list = {file_list.name};
 

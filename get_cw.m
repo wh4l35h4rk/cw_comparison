@@ -2,7 +2,6 @@ close all;
 clear variables;
 clc;
 
-dataset_folder = "FOLDERNAME";
 struct_list = dir(dataset_folder);
 N = size(struct_list);
 
@@ -16,6 +15,7 @@ N(1) = N(1) - 2;
 
 
 hydr_folder = 'hydrology';
+hydr_folder = 'hydrology_samples';
 if not(isfolder(hydr_folder))
     mkdir(hydr_folder)
 end
