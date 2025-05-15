@@ -2,7 +2,7 @@ close all;
 clear variables;
 clc;
 
-foldername = "hydrology_samples";
+foldername = "hydrology_data";
 file_list = dir(foldername + "\*.hydr");
 file_list = {file_list.name};
 
@@ -22,7 +22,8 @@ for i = 1:N
 
         [~, row_end] = FindThermocline(file);
         if row_end <= 20
-            shelf_tc_files(i) = thermocline_files(i);
+            shelf_tc_files(i, 1) = file_list{i};
+            shelf_tc_files(i, 2) = thermocline_files(i, 2);
         end
 
     elseif (max(c) - min(c)) <= 3
@@ -48,8 +49,14 @@ means = str2double(same_soundspeed_files(:, 2));
 [~, row] = min(means);
 ss_min = same_soundspeed_files(row, :);
 
-copyfile(fullfile(foldername, tc_max(1)), '.');
-copyfile(fullfile(foldername, ss_min(1)), '.');
+
+samples_folder = "hydrology_samples";
+if not(isfolder(samples_folder))
+    mkdir(samples_folder)
+end
+
+copyfile(fullfile(foldername, tc_max(1)), samples_folder);
+copyfile(fullfile(foldername, ss_min(1)), samples_folder);
 
 
 PlotResults(foldername, thermocline_files, same_soundspeed_files, tc_max, ss_min)
