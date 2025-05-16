@@ -2,14 +2,16 @@ close all;
 clear variables;
 clc;
 
+folder = 'npk_2025_05/';
+addpath(folder);
+
+
 min_frequency = 10;
 max_frequency = 1000;
 
 freqs = GetFrequencies(min_frequency, max_frequency);
 M = length(freqs);
 
-
-folder = 'npk_2025_05/';
 
 lines = readlines([folder 'MainRAMS.txt']);
 freq_line_index = 1;
@@ -44,6 +46,8 @@ end
 
 TL_matrix = [freqs TL];
 
+postfix = 'thermocline';    % change for different samples
+writematrix(TL_matrix, [folder 'tl_' postfix],  Delimiter='tab')
 
 x = TL_matrix(:, 1); 
 y = TL_matrix(:, 2); 
@@ -52,7 +56,6 @@ figure
 
 plot(x, y, 'LineWidth', 2); 
 set(gca, 'XScale', 'log');
-set(gca, 'YDir', 'reverse');
 xlabel('frequency, Hz');
 ylabel('TL, dB');
 title('TL(f)');

@@ -10,5 +10,6 @@ MainRAMS.txt
 profile.txt
 
 *.asv
+tl_*.*
 ImPrz
 Params.mat
