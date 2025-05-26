@@ -17,10 +17,6 @@ FindSamples(hydr_folder, samples_folder);
 
 i = 2;   % file index = 1..2
 
-file_list = dir(samples_folder + "\*.hydr");
-file_list = {file_list.name};
-file = file_list{i}; 
-
-MakeHydrologyFolder(samples_folder, file);
+MakeHydrologyFolder(samples_folder, i);
 
 
