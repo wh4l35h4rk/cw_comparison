@@ -3,7 +3,7 @@ clear variables;
 clc;
 
 nmod = 10;
-dz = 1;
+dz = [1, 1];
 f = [20, 500];
 folder = 'npk_2025_05/';
 
@@ -13,13 +13,16 @@ indices = [1, 2];
 names = ["Homogenous cold water", "Thermocline"];
 samples_folder = 'hydrology_samples/';
 
+figure;
 for k = indices
-    MakeHydrologyFolderLauncher([folder samples_folder], k)
+    MakeHydrologyFolder(folder, samples_folder, k)
 
-    figure;
+    subplot(1, 2, k)
     N = 3;
     for i = 1:length(f)
-        [wNum, ~, wmode] = ModeDecomposition(folder, nmod, dz, f(i));
+        ReplaceFrequencyInRAMS(folder, f(i));
+        [wNum, ~, wmode] = ModeDecomposition(folder, nmod, dz(i));
+
         z = 1:length(wmode);
 
         for j = 1:N
@@ -27,11 +30,12 @@ for k = indices
                     'DisplayName', ['Mode #', int2str(j), ', ' int2str(f(i)), ' Hz']);
             hold on
         end
-        title(names(k))
-        xlabel('Modal function');
-        ylabel('Depth, m');
-        set(gca, 'YDir', 'reverse')
-        legend()
-        grid on
     end
+    title(names(k))
+    xlabel('Modal function');
+    ylabel('Depth, m');
+    set(gca, 'YDir', 'reverse')
+    legend(Location="southeast")
+    grid on
+    hold off
 end
