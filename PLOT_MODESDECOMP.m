@@ -24,9 +24,15 @@ for k = indices
         [wNum, ~, wmode] = ModeDecomposition(folder, nmod, dz(i));
 
         z = 1:length(wmode);
+        if mod(i, 2) == 1
+            style = ':';
+        else
+            style = '-';
+        end
 
         for j = 1:N
-            semilogy(wmode(:, j), z', ...
+
+            semilogy(wmode(:, j), z', 'LineStyle', style, ...
                     'DisplayName', ['Mode #', int2str(j), ', ' int2str(f(i)), ' Hz']);
             hold on
         end
