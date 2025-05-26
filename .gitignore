@@ -3,13 +3,10 @@ hydrology*/
 Hydrology*.hydr
 results/
 
-bath*.*
-bottom*.*
-MainRAMS.txt
-
-profile.txt
+*.png
+*.fig
+*.txt
 
 *.asv
-tl_*.*
 ImPrz
 Params.mat
